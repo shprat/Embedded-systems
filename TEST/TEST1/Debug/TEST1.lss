@@ -1,0 +1,246 @@
+
+TEST1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000206  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000192  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000004  00800100  00800100  00000206  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000206  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000238  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000028  00000000  00000000  00000274  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000006c1  00000000  00000000  0000029c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000621  00000000  00000000  0000095d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000283  00000000  00000000  00000f7e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000054  00000000  00000000  00001204  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000360  00000000  00000000  00001258  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000063  00000000  00000000  000015b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  0000161b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 67 00 	jmp	0xce	; 0xce <__vector_1>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a4 30       	cpi	r26, 0x04	; 4
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 48 00 	call	0x90	; 0x90 <main>
+  88:	0c 94 c7 00 	jmp	0x18e	; 0x18e <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <main>:
+int clear;
+int buttonpress;
+
+int main(void)
+{
+	DDRB = 0xFF;
+  90:	8f ef       	ldi	r24, 0xFF	; 255
+  92:	84 b9       	out	0x04, r24	; 4
+
+	DDRB = 0xFF;
+  94:	84 b9       	out	0x04, r24	; 4
+	TCNT1 = 0;  // Set timer initially to 0
+  96:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+  9a:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
+	
+	// FOR POTENTIOMETER
+	ADCSRA = (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0); // enabling ADEN and prescaler setting to 128 div
+  9e:	87 e8       	ldi	r24, 0x87	; 135
+  a0:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+	ADMUX = (1<<REFS0) | (0<<REFS1); // setting ADMUX for Avcc with external capacitor
+  a4:	80 e4       	ldi	r24, 0x40	; 64
+  a6:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
+
+	// FOR BUTTON
+	EICRA = (0<<ISC01) | (1<<ISC00);
+  aa:	81 e0       	ldi	r24, 0x01	; 1
+  ac:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <__TEXT_REGION_LENGTH__+0x7f8069>
+	EIMSK = 0b00000001;
+  b0:	8d bb       	out	0x1d, r24	; 29
+	sei();
+  b2:	78 94       	sei
+	
+	TCCR1A = (1<<COM1A1) | (0<<COM1A0) | (1<<COM1B1) | (0<<COM1B0) |(1<<WGM11) | (1<<WGM10); // for timer comparison and fast pwm
+  b4:	83 ea       	ldi	r24, 0xA3	; 163
+  b6:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+	TCCR1B = (0 << WGM13) | (1<<WGM12) | (0<<CS12) | (1<<CS10); // for FAst PWM mode and prescaler
+  ba:	89 e0       	ldi	r24, 0x09	; 9
+  bc:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+	
+	ICR1 = 0x03FF; // input capture register , measure length of pulse
+  c0:	8f ef       	ldi	r24, 0xFF	; 255
+  c2:	93 e0       	ldi	r25, 0x03	; 3
+  c4:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
+  c8:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
+  cc:	ff cf       	rjmp	.-2      	; 0xcc <main+0x3c>
+
+000000ce <__vector_1>:
+	{	
+	}
+}
+ 
+ISR(INT0_vect)
+{
+  ce:	1f 92       	push	r1
+  d0:	0f 92       	push	r0
+  d2:	0f b6       	in	r0, 0x3f	; 63
+  d4:	0f 92       	push	r0
+  d6:	11 24       	eor	r1, r1
+  d8:	8f 93       	push	r24
+  da:	9f 93       	push	r25
+  dc:	ef 93       	push	r30
+  de:	ff 93       	push	r31
+	
+	if(buttonpress == 0)
+  e0:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <buttonpress>
+  e4:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <buttonpress+0x1>
+  e8:	00 97       	sbiw	r24, 0x00	; 0
+  ea:	39 f5       	brne	.+78     	; 0x13a <__vector_1+0x6c>
+	{
+		OCR1A = 0xf;
+  ec:	8f e0       	ldi	r24, 0x0F	; 15
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+  f4:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+		ADCSRA |= (1<<ADSC);
+  f8:	ea e7       	ldi	r30, 0x7A	; 122
+  fa:	f0 e0       	ldi	r31, 0x00	; 0
+  fc:	80 81       	ld	r24, Z
+  fe:	80 64       	ori	r24, 0x40	; 64
+ 100:	80 83       	st	Z, r24
+		while(ADCSRA & (1<<ADSC));
+ 102:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+ 106:	86 fd       	sbrc	r24, 6
+ 108:	fc cf       	rjmp	.-8      	; 0x102 <__vector_1+0x34>
+		OCR1A = ADCL;
+ 10a:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
+ 10e:	90 e0       	ldi	r25, 0x00	; 0
+ 110:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 114:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+		clear = ADCH;
+ 118:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+ 11c:	90 e0       	ldi	r25, 0x00	; 0
+ 11e:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 122:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		buttonpress++;
+ 126:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <buttonpress>
+ 12a:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <buttonpress+0x1>
+ 12e:	01 96       	adiw	r24, 0x01	; 1
+ 130:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <buttonpress+0x1>
+ 134:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <buttonpress>
+ 138:	21 c0       	rjmp	.+66     	; 0x17c <__vector_1+0xae>
+	}
+	
+	else if(buttonpress != 0)
+ 13a:	89 2b       	or	r24, r25
+ 13c:	f1 f0       	breq	.+60     	; 0x17a <__vector_1+0xac>
+	{
+		OCR1B = 0xf;
+ 13e:	8f e0       	ldi	r24, 0x0F	; 15
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 146:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+		ADCSRA |= (1<<ADSC);
+ 14a:	ea e7       	ldi	r30, 0x7A	; 122
+ 14c:	f0 e0       	ldi	r31, 0x00	; 0
+ 14e:	80 81       	ld	r24, Z
+ 150:	80 64       	ori	r24, 0x40	; 64
+ 152:	80 83       	st	Z, r24
+		while(ADCSRA & (1<<ADSC));
+ 154:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+ 158:	86 fd       	sbrc	r24, 6
+ 15a:	fc cf       	rjmp	.-8      	; 0x154 <__vector_1+0x86>
+		OCR1B = ADCL;
+ 15c:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
+ 160:	90 e0       	ldi	r25, 0x00	; 0
+ 162:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 166:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+		clear = ADCH;
+ 16a:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+ 16e:	90 e0       	ldi	r25, 0x00	; 0
+ 170:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 174:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 178:	01 c0       	rjmp	.+2      	; 0x17c <__vector_1+0xae>
+	}
+	
+	else
+	{
+		PORTB = 0x00;
+ 17a:	15 b8       	out	0x05, r1	; 5
+	}
+}
+ 17c:	ff 91       	pop	r31
+ 17e:	ef 91       	pop	r30
+ 180:	9f 91       	pop	r25
+ 182:	8f 91       	pop	r24
+ 184:	0f 90       	pop	r0
+ 186:	0f be       	out	0x3f, r0	; 63
+ 188:	0f 90       	pop	r0
+ 18a:	1f 90       	pop	r1
+ 18c:	18 95       	reti
+
+0000018e <_exit>:
+ 18e:	f8 94       	cli
+
+00000190 <__stop_program>:
+ 190:	ff cf       	rjmp	.-2      	; 0x190 <__stop_program>
